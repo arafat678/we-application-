@@ -1,0 +1,310 @@
+<!-- 
+
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Quality Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to right, #f8f9fa, #ffffff);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .container:hover {
+            transform: scale(1.03);
+        }
+        h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        @keyframes colorChange {
+            0% { color: #e74c3c; }  
+            25% { color: #f39c12; } 
+            50% { color: #2ecc71; } 
+            75% { color: #3498db; } 
+            100% { color: #9b59b6; } 
+        }
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px #e74c3c; }
+            50% { text-shadow: 0 0 15px #f39c12, 0 0 25px #2ecc71; }
+            100% { text-shadow: 0 0 5px #3498db; }
+        }
+        .predicted-text {
+            font-size: 24px;
+            font-weight: bold;
+            animation: colorChange 2s infinite alternate, textGlow 2s infinite alternate;
+        }
+        .prediction-details {
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            margin-bottom: 15px;
+        }
+        img {
+            width: 250px;
+            height: auto;
+            border-radius: 8px;
+        }
+        @keyframes glowing {
+            0% { box-shadow: 0 0 5px #007bff; }
+            50% { box-shadow: 0 0 20px #007bff, 0 0 30px #0056b3; }
+            100% { box-shadow: 0 0 5px #007bff; }
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            animation: glowing 1.5s infinite alternate;
+        }
+        .btn:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Our Fruit Quality Prediction</h1>
+        <h2 class="predicted-text">Predicted Fruit will be: 
+            <span class="predicted-class">{{ predicted_class }}</span>
+        </h2>
+        <div class="prediction-details">
+            <p>📊 Quality Score:
+                <span class="{{ quality_class }}">{{ fruit_quality }}</span>
+            </p>
+        </div>
+        <div class="image-container">
+            <img src="{{ url_for('static', filename=prediction_image) }}" alt="Predicted Image">
+        </div>
+        <a href="/" class="btn">Go Back to Home</a>
+    </div>
+
+    <script>
+        function deleteImage() {
+            const imageName = "{{ prediction_image }}";
+            fetch('/delete_image', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image_name: imageName }),
+            })
+            .then(response => response.json())
+            .then(data => console.log(data.message))
+            .catch(error => console.error('Error:', error));
+        }
+        window.addEventListener('beforeunload', deleteImage);
+    </script>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Quality Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to right, #f8f9fa, #ffffff);
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            max-width: 450px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .container:hover {
+            transform: scale(1.03);
+        }
+        h1 {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .predicted-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: #e74c3c;
+            animation: colorChange 2s infinite alternate, textGlow 2s infinite alternate;
+        }
+        @keyframes colorChange {
+            0% { color: #e74c3c; }  
+            25% { color: #f39c12; } 
+            50% { color: #2ecc71; } 
+            75% { color: #3498db; } 
+            100% { color: #9b59b6; } 
+        }
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px #e74c3c; }
+            50% { text-shadow: 0 0 15px #f39c12, 0 0 25px #2ecc71; }
+            100% { text-shadow: 0 0 5px #3498db; }
+        }
+        .prediction-details {
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+            margin-top: 5px;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            padding: 5px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            margin: 10px 0;
+        }
+        img {
+            width: 200px;
+            height: auto;
+            border-radius: 6px;
+        }
+        @keyframes glowing {
+            0% { box-shadow: 0 0 5px #007bff; }
+            50% { box-shadow: 0 0 20px #007bff, 0 0 30px #0056b3; }
+            100% { box-shadow: 0 0 5px #007bff; }
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 20px;
+            background: #ff00d4;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            animation: glowing 1.5s infinite alternate;
+        }
+        .btn:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+        @keyframes colorChange {
+    0% { color: #ff0000; } /* Red */
+    25% { color: #ff8800; } /* Orange */
+    50% { color: #008000; } /* Green */
+    75% { color: #0000ff; } /* Blue */
+    100% { color: #ff0000; } /* Back to Red */
+}
+
+.color-effect {
+    font-weight: bold;
+    font-size: 18px;
+    animation: colorChange 3s infinite alternate;
+}
+/* Base styling */
+.quality-effect {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Glowing Effect */
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); }
+    50% { box-shadow: 0 0 15px rgba(255, 255, 255, 1); }
+    100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); }
+}
+
+/* High-Quality Fruit (Green Glow) */
+.high-quality {
+    color: #28a745;
+    background-color: rgba(40, 167, 69, 0.2);
+    animation: glow 2s infinite alternate;
+}
+
+/* Medium-Quality Fruit (Orange Pulse) */
+.medium-quality {
+    color: #ff8800;
+    background-color: rgba(255, 136, 0, 0.2);
+    animation: glow 2s infinite alternate;
+}
+
+/* Low-Quality Fruit (Red Blink) */
+.low-quality {
+    color: #ff0000;
+    background-color: rgba(255, 0, 0, 0.2);
+    animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Fruit Quality Prediction</h1>
+        <h2 class="predicted-text">Predicted Fruit Will Be: <span class="predicted-class">{{ predicted_class }}</span></h2>
+        <div class="prediction-details">
+            
+
+            <p class="color-effect">
+                📊 This is  
+                <span class="quality-effect {{ quality_class }}">{{ fruit_quality }}</span>Fruit And You Can Buy it !!
+            </p>
+            
+
+           
+        </div>
+        <div class="image-container">
+            <img src="{{ url_for('static', filename=prediction_image) }}" alt="Predicted Image">
+        </div>
+        <a href="/" class="btn">Back to Home</a>
+    </div>
+</body>
+</html>

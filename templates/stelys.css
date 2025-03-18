@@ -1,0 +1,71 @@
+/* General Button Styling */
+button {
+    background: linear-gradient(45deg, #28a745, #218838);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    width: auto;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: glowing 1.5s infinite alternate;
+}
+
+/* Flip Button Styling */
+.flip-button {
+    background: linear-gradient(45deg, #9400D3, #4B0082);
+    padding: 8px 15px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    animation: glowing 1.5s infinite alternate;
+}
+
+/* Hover Effects */
+button:hover, .flip-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(33, 136, 56, 0.8);
+}
+
+/* Ripple Effect on Click */
+button:active::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+@keyframes ripple {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Glowing Animation */
+@keyframes glowing {
+    0% {
+        box-shadow: 0 0 5px rgba(40, 167, 69, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(40, 167, 69, 1);
+    }
+    100% {
+        box-shadow: 0 0 25px rgba(40, 167, 69, 1);
+    }
+}

@@ -1,0 +1,529 @@
+
+
+<!-- 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Sorting - Upload Image</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 350px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .file-label {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .file-label:hover {
+            background: #e63946;
+        }
+        #file-name {
+            display: block;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #333;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="container">
+        <h1>Welcome to Our Fruit Sorting Application🍏🍊</h1>
+        <p>Upload a fruit image, and our ML model will accurately analyze its quality for you!🍏🔍</p>
+        <p style="color: red;"> Note:</strong> Only upload a fruit image otherwise it will give you a wrong prediction !!</p>
+
+
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <label class="file-label" for="file">Choose Image</label>
+            <input type="file" id="file" name="file" required onchange="updateFileName()">
+            <span id="file-name">No file chosen</span>
+            <button type="submit">Analyze Fruit</button>
+            <p><strong>Note:</strong> This application is developed for research purposes.</p>
+        </form>
+    </div>
+
+    <script>
+        function updateFileName() {
+            const fileInput = document.getElementById('file');
+            const fileNameDisplay = document.getElementById('file-name');
+            fileNameDisplay.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : "No file chosen";
+        }
+    </script>
+
+</body>
+</html> -->
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Sorting - Upload Image</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 350px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        /* Animated Choose Image Button */
+        .file-label {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .file-label:hover {
+            background: #e63946;
+            transform: scale(1.1);
+        }
+        #file-name {
+            display: block;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #333;
+        }
+        /* Animated Analyze Button */
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            transition: 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        button:hover {
+            background: #218838;
+            box-shadow: 0 0 15px rgba(40, 167, 69, 0.8);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to Our Fruit Sorting Application🍏🍊</h1>
+        <p>Upload a fruit image, and our ML model will accurately analyze its quality for you!🍏🔍</p>
+        <p style="color: red;"><strong>Note:</strong> Only upload a fruit image otherwise it will give you a wrong prediction !!</p>
+
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <label class="file-label" for="file">Choose Image</label>
+            <input type="file" id="file" name="file" required onchange="updateFileName()">
+            <span id="file-name">No file chosen</span>
+            <button type="submit">Analyze Fruit</button>
+            <p><strong>Note:</strong> This application is developed for research purposes.</p>
+        </form>
+    </div>
+
+    <script>
+        function updateFileName() {
+            const fileInput = document.getElementById('file');
+            const fileNameDisplay = document.getElementById('file-name');
+            fileNameDisplay.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : "No file chosen";
+        }
+    </script>
+
+</body>
+</html> -->
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Sorting - Upload Image</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 350px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Neon Glow Choose Image Button */
+        .file-label {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 0 5px #ff6b6b, 0 0 10px #ff6b6b;
+        }
+        .file-label:hover {
+            background: #e63946;
+            box-shadow: 0 0 10px #ff6b6b, 0 0 20px #ff6b6b, 0 0 40px #ff6b6b;
+            transform: scale(1.05);
+            animation: neonGlowChoose 1.5s infinite alternate;
+        }
+        @keyframes neonGlowChoose {
+            0% { box-shadow: 0 0 5px #ff6b6b, 0 0 10px #ff6b6b; }
+            50% { box-shadow: 0 0 15px #ff6b6b, 0 0 30px #ff6b6b, 0 0 60px #ff6b6b; }
+            100% { box-shadow: 0 0 5px #ff6b6b, 0 0 10px #ff6b6b; }
+        }
+
+        #file-name {
+            display: block;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Neon Glow Analyze Button */
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 0 5px #28a745, 0 0 10px #28a745;
+        }
+        button:hover {
+            background: #218838;
+            box-shadow: 0 0 10px #28a745, 0 0 20px #28a745, 0 0 40px #28a745;
+            transform: scale(1.05);
+            animation: neonGlowAnalyze 1.5s infinite alternate;
+        }
+        @keyframes neonGlowAnalyze {
+            0% { box-shadow: 0 0 5px #28a745, 0 0 10px #28a745; }
+            50% { box-shadow: 0 0 15px #28a745, 0 0 30px #28a745, 0 0 60px #28a745; }
+            100% { box-shadow: 0 0 5px #28a745, 0 0 10px #28a745; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to Our Fruit Sorting Application🍏🍊</h1>
+        <p>Upload a fruit image, and our ML model will accurately analyze its quality for you!🍏🔍</p>
+        <p style="color: red;"><strong>Note:</strong> Only upload a fruit image otherwise it will give you a wrong prediction !!</p>
+
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <label class="file-label" for="file">Choose Image</label>
+            <input type="file" id="file" name="file" required onchange="updateFileName()">
+            <span id="file-name">No file chosen</span>
+            <button type="submit">Analyze Fruit</button>
+            <p><strong>Note:</strong> This application is developed for research purposes.</p>
+        </form>
+    </div>
+
+    <script>
+        function updateFileName() {
+            const fileInput = document.getElementById('file');
+            const fileNameDisplay = document.getElementById('file-name');
+            fileNameDisplay.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : "No file chosen";
+        }
+    </script>
+
+</body>
+</html> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Sorting - Upload Image</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            margin: 0;
+            perspective: 1000px;
+        }
+
+        /* Flip Card Container */
+        .flip-container {
+            width: 350px;
+            height: 450px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+        }
+
+        /* Prevent Auto Flip */
+        .flip-container:hover {
+            transform: none;
+        }
+
+        /* Front & Back Side */
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .back {
+            background: #feb47b;
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        h1, h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Choose Image Button */
+        .file-label { 
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 0 10px #ff6b6b;
+            transition: 0.3s ease;
+        }
+
+        .file-label:hover {
+            background: #e63946;
+            box-shadow: 0 0 20px #ff6b6b;
+        }
+
+        #file-name {
+            display: block;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Analyze Button */
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 0 10px #017ed1;
+            width: 100%;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background: #0259ca;
+            box-shadow: 0 0 20px #ff0303;
+        }
+
+        /* Flip Button */
+        .flip-button {
+            background: #b700ff;
+            margin-top: 5px;
+        }
+
+        .flip-button:hover {
+            background: #fa04ee;
+            box-shadow: 0 0 20px #007bff;
+        }
+
+        /* Prevent Image Flip */
+        img {
+            transform: none !important;
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flip-container" id="flipCard">
+        
+        <!-- Front Side -->
+        <div class="front">
+            <h1>Welcome to Our Fruit Sorting Web Application 🍏🍊</h1>
+            <p>Note: Upload a fruit image and our ML & DL models will accurately assess its quality within  a seconds🍏🔍</p>
+            <p style="color: red;"><strong>Note:</strong> Only upload fruit images for accurate results !</p>
+
+            <form action="/predict" method="post" enctype="multipart/form-data">
+                <label class="file-label" for="file">Choose Image</label>
+                <input type="file" id="file" name="file" required onchange="updateFileName()">
+                <span id="file-name">No file chosen</span>
+                <button type="submit">Analyze Fruit</button>
+            </form>
+
+            <button class="flip-button" onclick="flipCard()">Flip for Info</button>
+          <p><strong>Note:</strong> This application is developed for research purposes.</p>
+        </div>
+
+        <!-- Back Side -->
+        <div class="back">
+            <h2>🤖 How It Works? 🤖</h2>
+            <p>📸 Upload only a fruit image</p>
+            <p>🧠 Our Model analyzes using DL & ML</p>
+            <p>📊 Predicts fruit quality based on training</p>
+            <p>🔍 Output is displayed on the screen</p>
+            <p>💡 Our system is designed for continuous improvement in research and technological innovation. I am actively working on optimizing real-time performance while addressing existing limitations to enhance efficiency and accuracy. Stay engaged as we push the boundaries of AI-driven solutions!</p>
+            <button class="flip-button" onclick="flipCard()">Back to Upload</button>
+        </div>
+
+    </div>
+
+    <script>
+        function updateFileName() {
+            const fileInput = document.getElementById('file');
+            const fileNameDisplay = document.getElementById('file-name');
+            fileNameDisplay.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : "No file chosen";
+        }
+
+        function flipCard() {
+            const flipContainer = document.getElementById('flipCard');
+            flipContainer.style.transform = flipContainer.style.transform === "rotateY(180deg)" ? "rotateY(0deg)" : "rotateY(180deg)";
+        }
+    </script>
+
+</body>
+</html>
+
