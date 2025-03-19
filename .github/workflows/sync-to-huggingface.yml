@@ -1,0 +1,32 @@
+name: Sync to Hugging Face Space
+
+on:
+  push:
+    branches:
+      - main  # Trigger when pushing to main branch
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Hugging Face Hub CLI
+        run: pip install huggingface_hub
+
+      - name: Authenticate with Hugging Face
+        run: huggingface-cli login --token ${{ secrets.HF_TOKEN }}
+
+      - name: Push Updates to Hugging Face Space
+        env:
+          HF_HUB_REPO: "spaces/arafatmondal/fruit_sorting_app"
+        run: |
+          git config --global user.email "arafatpersonal2025@gmail.com"
+          git config --global user.name "arafatmondal"
+          git remote add hf https://huggingface.co/$HF_HUB_REPO
+          git push hf main
+
+
+
